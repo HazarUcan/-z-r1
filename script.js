@@ -7,8 +7,6 @@ var stars = 500;
 var colorrange = [0, 60, 240];
 var starArray = [];
 
-you couldnt fix it nevermind, ı think while ı am changing this original code ı made some error while typing the texts can you fix them, please dont change anything else it is working properly
-
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
