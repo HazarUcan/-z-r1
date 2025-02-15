@@ -16,42 +16,33 @@ function drawText() {
         context.fillText("Her gün seninle birlikte olduğum için ne kadar şanslı olduğumu düşünüyorum.", canvas.width/2, canvas.height/2);
         opacity = opacity + 0.01;
     }
-    // Fades out the text by decreasing the opacity
     if(frameNumber >= 250 && frameNumber < 500){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
         context.fillText("Her gün seninle birlikte olduğum için ne kadar şanslı olduğumu düşünüyorum.", canvas.width/2, canvas.height/2);
         opacity = opacity - 0.01;
     }
 
-    if(frameNumber == 500){
-        opacity = 0;
-    }
+    if(frameNumber == 500) opacity = 0;
+
     if(frameNumber > 500 && frameNumber < 750){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
 
         if (window.innerWidth < 600) { // Shortens long sentence for mobile screens
             drawTextWithLineBreaks(["Yaşayabileceğim onca hayattan,", "seninle tanıştığım için mutluyum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         } else {
-            context.fillText("Yaşayabileceğim onca hayattan, seninle tanıştığım için mutluyum.", canvas.width/2, canvas.height/2);
+            drawTextWithLineBreaks(["Yaşayabileceğim onca hayattan,", "seninle tanıştığım için mutluyum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         }
 
         opacity = opacity + 0.01;
     }
     if(frameNumber >= 750 && frameNumber < 1000){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
-        
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Yaşayabileceğim onca hayattan,", "seninle tanıştığım için mutluyum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("Yaşayabileceğim onca hayattan, seninle tanıştığım için mutluyum.", canvas.width/2, canvas.height/2);
-        }
-
+        drawTextWithLineBreaks(["Yaşayabileceğim onca hayattan,", "seninle tanıştığım için mutluyum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         opacity = opacity - 0.01;
     }
 
-    if(frameNumber == 1000){
-        opacity = 0;
-    }
+    if(frameNumber == 1000) opacity = 0;
+
     if(frameNumber > 1000 && frameNumber < 1250){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
         context.fillText("Bazen çok salak bir adam olabiliyorum.", canvas.width/2, canvas.height/2);
@@ -63,9 +54,8 @@ function drawText() {
         opacity = opacity - 0.01;
     }
 
-    if(frameNumber == 1500){
-        opacity = 0;
-    }
+    if(frameNumber == 1500) opacity = 0;
+
     if(frameNumber > 1500 && frameNumber < 1750){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
         context.fillText("Bazen konuşurken çok sinir bozucu olabiliyorum.", canvas.width/2, canvas.height/2);
@@ -77,55 +67,37 @@ function drawText() {
         opacity = opacity - 0.01;
     }
 
-    if(frameNumber == 2000){
-        opacity = 0;
-    }
+    if(frameNumber == 2000) opacity = 0;
+
     if(frameNumber > 2000 && frameNumber < 2250){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
 
         if (window.innerWidth < 600) {
             drawTextWithLineBreaks(["Ağzımdan çıkanlar yüzünden", "seni kaybetmek istemiyorum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         } else {
-            context.fillText("Ağzımdan çıkanlar yüzünden seni kaybetmek istemiyorum.", canvas.width/2, canvas.height/2);
+            drawTextWithLineBreaks(["Ağzımdan çıkanlar yüzünden", "seni kaybetmek istemiyorum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         }
 
         opacity = opacity + 0.01;
     }
     if(frameNumber >= 2250 && frameNumber < 2500){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
-
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Ağzımdan çıkanlar yüzünden", "seni kaybetmek istemiyorum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("Ağzımdan çıkanlar yüzünden seni kaybetmek istemiyorum.", canvas.width/2, canvas.height/2);
-        }
-        
+        drawTextWithLineBreaks(["Ağzımdan çıkanlar yüzünden", "seni kaybetmek istemiyorum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         opacity = opacity - 0.01;
     }
 
-    if(frameNumber == 2500){
-        opacity = 0;
-    }
+    if(frameNumber == 2500) opacity = 0;
+
     if(frameNumber > 2500 && frameNumber < 99999){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
-
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Umarım ömrüm boyunca", "geceleri sinirimi bozmaya devam edersin."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("Umarım ömrüm boyunca geceleri sinirimi bozmaya devam edersin.", canvas.width/2, canvas.height/2);
-        }
-
+        drawTextWithLineBreaks(["Umarım ömrüm boyunca", "geceleri sinirimi bozmaya devam edersin."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         opacity = opacity + 0.01;
     }
     
     if(frameNumber >= 2750 && frameNumber < 99999){
         context.fillStyle = `rgba(45, 45, 255, ${secondOpacity})`;
 
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Bu adamı lütfen affet,", "çünkü çok pişman."], canvas.width / 2, (canvas.height/2 + 60), fontSize, lineHeight);
-        } else {
-            context.fillText("Bu adamı lütfen affet, çünkü çok pişman.", canvas.width/2, (canvas.height/2 + 50));
-        }
+        drawTextWithLineBreaks(["Bu adamı lütfen affet,", "çünkü çok pişman."], canvas.width / 2, (canvas.height/2 + 60), fontSize, lineHeight);
 
         secondOpacity = secondOpacity + 0.01;
     }
@@ -138,9 +110,9 @@ function drawText() {
         button.style.display = "block";
     }   
 
-     // Reset the shadow effect after drawing the text
-     context.shadowColor = "transparent";
-     context.shadowBlur = 0;
-     context.shadowOffsetX = 0;
-     context.shadowOffsetY = 0;
+    // Reset shadow effect
+    context.shadowColor = "transparent";
+    context.shadowBlur = 0;
+    context.shadowOffsetX = 0;
+    context.shadowOffsetY = 0;
 }
