@@ -1,81 +1,3 @@
-var canvas = document.getElementById("starfield");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-var context = canvas.getContext("2d");
-var stars = 500;
-var colorrange = [0, 60, 240];
-var starArray = [];
-
-function getRandom(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// Initialize stars with random opacity values
-for (var i = 0; i < stars; i++) {
-    var x = Math.random() * canvas.offsetWidth;
-    var y = Math.random() * canvas.offsetHeight;
-    var radius = Math.random() * 1.2;
-    var hue = colorrange[getRandom(0, colorrange.length - 1)];
-    var sat = getRandom(50, 100);
-    var opacity = Math.random();
-    starArray.push({ x, y, radius, hue, sat, opacity });
-}
-
-var frameNumber = 0;
-var opacity = 0;
-var secondOpacity = 0;
-var thirdOpacity = 0;
-
-var baseFrame = context.getImageData(0, 0, window.innerWidth, window.innerHeight);
-
-function drawStars() {
-    for (var i = 0; i < stars; i++) {
-        var star = starArray[i];
-
-        context.beginPath();
-        context.arc(star.x, star.y, star.radius, 0, 360);
-        context.fillStyle = "hsla(" + star.hue + ", " + star.sat + "%, 88%, " + star.opacity + ")";
-        context.fill();
-    }
-}
-
-function updateStars() {
-    for (var i = 0; i < stars; i++) {
-        if (Math.random() > 0.99) {
-            starArray[i].opacity = Math.random();
-        }
-    }
-}
-
-const button = document.getElementById("valentinesButton");
-
-button.addEventListener("click", () => {
-  if (button.textContent === "Click Me! ❤") {
-    button.textContent = "loading...";
-    fetch('send_mail.php')
-      .then(response => {
-        if (response.ok) {
-          button.textContent = "Check Your Email 🙃";
-        } else {
-          console.error('Failed to send email');
-          button.textContent = "Error 😞";
-        }
-      })
-      .catch(error => {
-        // Handle network errors or other issues
-        console.error('Error:', error);
-        button.textContent = "Error 😞";
-      });
-  }
-});
-
-function drawTextWithLineBreaks(lines, x, y, fontSize, lineHeight) {
-    lines.forEach((line, index) => {
-        context.fillText(line, x, y + index * (fontSize + lineHeight));
-    });
-}
-
 function drawText() {
     var fontSize = Math.min(30, window.innerWidth / 24); // Adjust font size based on screen width
     var lineHeight = 8;
@@ -83,7 +5,7 @@ function drawText() {
     context.font = fontSize + "px Comic Sans MS";
     context.textAlign = "center";
     
-    // glow effect
+    // Glow effect
     context.shadowColor = "rgba(45, 45, 255, 1)";
     context.shadowBlur = 8;
     context.shadowOffsetX = 0;
@@ -91,27 +13,26 @@ function drawText() {
 
     if(frameNumber < 250){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
-        context.fillText("Her gün seninle birlikte olduğum için ne kadar şanslı olduğumu düşünüyorum", canvas.width/2, canvas.height/2);
+        context.fillText("Her gün seninle birlikte olduğum için ne kadar şanslı olduğumu düşünüyorum.", canvas.width/2, canvas.height/2);
         opacity = opacity + 0.01;
     }
-    //fades out the text by decreasing the opacity
+    // Fades out the text by decreasing the opacity
     if(frameNumber >= 250 && frameNumber < 500){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
-        context.fillText("Her gün seninle birlikte olduğum için ne kadar şanslı olduğumu düşünüyorum", canvas.width/2, canvas.height/2);
+        context.fillText("Her gün seninle birlikte olduğum için ne kadar şanslı olduğumu düşünüyorum.", canvas.width/2, canvas.height/2);
         opacity = opacity - 0.01;
     }
 
-    //needs this if statement to reset the opacity before next statement on canvas
     if(frameNumber == 500){
         opacity = 0;
     }
     if(frameNumber > 500 && frameNumber < 750){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
 
-        if (window.innerWidth < 600) {           //shortens long sentence for mobile screens
-            drawTextWithLineBreaks(["Yaşayabileceğim onca hayattan,", "Yaşar hazırlığında tanışmak"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
+        if (window.innerWidth < 600) { // Shortens long sentence for mobile screens
+            drawTextWithLineBreaks(["Yaşayabileceğim onca hayattan,", "seninle tanıştığım için mutluyum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         } else {
-            context.fillText("Yaşayabileceğim onca hayattan,", "Yaşar hazırlığında tanışmak", canvas.width/2, canvas.height/2);
+            context.fillText("Yaşayabileceğim onca hayattan, seninle tanıştığım için mutluyum.", canvas.width/2, canvas.height/2);
         }
 
         opacity = opacity + 0.01;
@@ -120,9 +41,9 @@ function drawText() {
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
         
         if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Yaşayabileceğim onca hayattan,", "Yaşar hazırlığında tanışmak"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
+            drawTextWithLineBreaks(["Yaşayabileceğim onca hayattan,", "seninle tanıştığım için mutluyum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         } else {
-            context.fillText("Yaşayabileceğim onca hayattan,", "Yaşar hazırlığında tanışmak", canvas.width/2, canvas.height/2);
+            context.fillText("Yaşayabileceğim onca hayattan, seninle tanıştığım için mutluyum.", canvas.width/2, canvas.height/2);
         }
 
         opacity = opacity - 0.01;
@@ -133,12 +54,12 @@ function drawText() {
     }
     if(frameNumber > 1000 && frameNumber < 1250){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
-        context.fillText("Arada çok salak bir adam olabiliyorum", canvas.width/2, canvas.height/2);
+        context.fillText("Bazen çok salak bir adam olabiliyorum.", canvas.width/2, canvas.height/2);
         opacity = opacity + 0.01;
     }
     if(frameNumber >= 1250 && frameNumber < 1500){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
-        context.fillText("Arada çok salak bir adam olabiliyorum", canvas.width/2, canvas.height/2);
+        context.fillText("Bazen çok salak bir adam olabiliyorum.", canvas.width/2, canvas.height/2);
         opacity = opacity - 0.01;
     }
 
@@ -147,12 +68,12 @@ function drawText() {
     }
     if(frameNumber > 1500 && frameNumber < 1750){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
-        context.fillText("Bazen konuşurken çok sinir bozucu da olabiliyoruz", canvas.width/2, canvas.height/2);
+        context.fillText("Bazen konuşurken çok sinir bozucu olabiliyorum.", canvas.width/2, canvas.height/2);
         opacity = opacity + 0.01;
     }
     if(frameNumber >= 1750 && frameNumber < 2000){
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
-        context.fillText("Bazen konuşurken çok sinir bozucu da olabiliyoruz", canvas.width/2, canvas.height/2);
+        context.fillText("Bazen konuşurken çok sinir bozucu olabiliyorum.", canvas.width/2, canvas.height/2);
         opacity = opacity - 0.01;
     }
 
@@ -163,9 +84,9 @@ function drawText() {
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
 
         if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Ama ağzımdan çıkanlar yüzünden", "En son kaybetmek isticeğim insan sensin"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
+            drawTextWithLineBreaks(["Ağzımdan çıkanlar yüzünden", "seni kaybetmek istemiyorum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         } else {
-            context.fillText("Ama ağzımdan çıkanlar yüzünden", "En son kaybetmek isticeğim insan sensin", canvas.width/2, canvas.height/2);
+            context.fillText("Ağzımdan çıkanlar yüzünden seni kaybetmek istemiyorum.", canvas.width/2, canvas.height/2);
         }
 
         opacity = opacity + 0.01;
@@ -174,9 +95,9 @@ function drawText() {
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
 
         if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Ama ağzımdan çıkanlar yüzünden", "En son kaybetmek isticeğim insan sensin"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
+            drawTextWithLineBreaks(["Ağzımdan çıkanlar yüzünden", "seni kaybetmek istemiyorum."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         } else {
-            context.fillText("Ama ağzımdan çıkanlar yüzünden", "En son kaybetmek isticeğim insan sensin", canvas.width/2, canvas.height/2);
+            context.fillText("Ağzımdan çıkanlar yüzünden seni kaybetmek istemiyorum.", canvas.width/2, canvas.height/2);
         }
         
         opacity = opacity - 0.01;
@@ -189,9 +110,9 @@ function drawText() {
         context.fillStyle = `rgba(45, 45, 255, ${opacity})`;
 
         if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Umarım ömrüm boyunca", "Geceleri sinirimi bozmaya devam edersin"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
+            drawTextWithLineBreaks(["Umarım ömrüm boyunca", "geceleri sinirimi bozmaya devam edersin."], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
         } else {
-            context.fillText("Umarım ömrüm boyunca", "Geceleri sinirimi bozmaya devam edersin", canvas.width/2, canvas.height/2);
+            context.fillText("Umarım ömrüm boyunca geceleri sinirimi bozmaya devam edersin.", canvas.width/2, canvas.height/2);
         }
 
         opacity = opacity + 0.01;
@@ -200,11 +121,10 @@ function drawText() {
     if(frameNumber >= 2750 && frameNumber < 99999){
         context.fillStyle = `rgba(45, 45, 255, ${secondOpacity})`;
 
-
         if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Bu adamı lütfen affet", "Çünkü çok pişman"], canvas.width / 2, (canvas.height/2 + 60), fontSize, lineHeight);
+            drawTextWithLineBreaks(["Bu adamı lütfen affet,", "çünkü çok pişman."], canvas.width / 2, (canvas.height/2 + 60), fontSize, lineHeight);
         } else {
-            context.fillText("Bu adamı lütfen affet", "Çünkü çok pişman", canvas.width/2, (canvas.height/2 + 50));
+            context.fillText("Bu adamı lütfen affet, çünkü çok pişman.", canvas.width/2, (canvas.height/2 + 50));
         }
 
         secondOpacity = secondOpacity + 0.01;
@@ -212,7 +132,7 @@ function drawText() {
 
     if(frameNumber >= 3000 && frameNumber < 99999){
         context.fillStyle = `rgba(45, 45, 255, ${thirdOpacity})`;
-        context.fillText("Çok özür dilerim", canvas.width/2, (canvas.height/2 + 120));
+        context.fillText("Çok özür dilerim.", canvas.width/2, (canvas.height/2 + 120));
         thirdOpacity = thirdOpacity + 0.01;
 
         button.style.display = "block";
@@ -224,24 +144,3 @@ function drawText() {
      context.shadowOffsetX = 0;
      context.shadowOffsetY = 0;
 }
-
-function draw() {
-    context.putImageData(baseFrame, 0, 0);
-
-    drawStars();
-    updateStars();
-    drawText();
-
-    if (frameNumber < 99999) {
-        frameNumber++;
-    }
-    window.requestAnimationFrame(draw);
-}
-
-window.addEventListener("resize", function () {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    baseFrame = context.getImageData(0, 0, window.innerWidth, window.innerHeight);
-});
-
-window.requestAnimationFrame(draw);
